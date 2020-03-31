@@ -9,7 +9,10 @@ class PostsController < ApplicationController
     @post.save # saveをしてデータベースに保存する。
     redirect_to @post # showページにリダイレクト
   end
-
+  
+    def show
+      @post = Post.find(params[:id])
+    end
   private
 
   def post_params # ストロングパラメータを定義する
