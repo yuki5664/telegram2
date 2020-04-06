@@ -24,6 +24,11 @@
         <%= image_tag comment.user.avatar.variant(resize_to_fill: [20, 20]).processed, class: "img-fluid rounded-circle" %>
         <%= comment.user.name %>
         <%= truncate(comment.body, length: 30) %>
+        
+        <% if current_user.id == comment.user.id %>
+          <%= link_to t(".delete"), comment_path(comment), method: :delete, data: {confirm: '削除してよろしいですか？'} %>
+        <% end %>
+
       </p>
     <% end %>
 
