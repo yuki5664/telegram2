@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to posts_path, notice: "コメントを保存しました。"
     else
-      @posts = Post.order(created_at: :desc)
+      @posts = Post.order(created_at: :desc).page(params[:page]).per(5)
       render template: "posts/index"
     end
   end
@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     redirect_to posts_path, notice: "コメントを削除しました。"
   end
-  
+
   private
   def comment_params
     params.require(:comment).permit(:body, :post_id)
