@@ -16,7 +16,9 @@ class Post < ApplicationRecord
       unless image.attached?
         errors.add(:image, 'ファイルを添付してください')
       end
-
-    end
+    end  
   end
+
+  scope :find_newest_post, -> (page) { with_attached_image.order(created_at: :desc).page(page).per(5) }
+  scope :with_user_and_comment, -> { includes(user: [avatar_attachment: :blob], comments: [user: [avatar_attachment: :blob]]) }
 end
