@@ -14,3 +14,15 @@
   nav.pagination {
     display: none;
   }
+
+  .like {
+    color: red;
+    text-decoration: none;
+    display: inline;
+  } 
+  
+  .unlike {
+    color: gray;
+    text-decoration: none;
+    display: inline;
+  }
